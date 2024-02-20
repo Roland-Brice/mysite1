@@ -39,7 +39,7 @@ class QuestionIndexViewTests(TestCase):
     def test_no_questions(self):
         response = self.client.get(reverse("polls:index"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No polls are available")
+        self.assertContains(response, "No polls available")
         self.assertQuerySetEqual(response.context['latest_question_list'], [])
 
 
@@ -86,3 +86,4 @@ class QuestionDetailViewTests(TestCase):
         url = reverse ("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
